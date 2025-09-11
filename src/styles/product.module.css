@@ -1,0 +1,80 @@
+#container {
+  flex: 1;
+  background-color: lightyellow;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 1rem;
+  width: 95%;
+  min-height: 100vh;
+  height: auto;
+  /*  border: 1px solid #ccc; */
+}
+
+#productDetail {
+  display: grid;
+  grid-area: 1/1/2/2;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+#sideCart {
+  display: grid;
+  grid-area: 1/2/2/3;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  justify-items: center;
+  align-items: start;
+  padding: 1rem;
+  background-color: aquamarine;
+}
+
+#product {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  max-width: 700px;
+  min-width: 300px;
+  margin-top: -4rem;
+}
+
+#imgDetail {
+  width: 500px;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  gap: 1 rem;
+}
+
+form > a > button {
+  width: 150px;
+  height: 50px;
+  /*  background-color: aquamarine; */
+  /*margin-top: 15px; */
+}
+
+input {
+  margin-left: 0;
+  font-size: larger;
+  font-weight: 800;
+}
+
+/*
+btnstyle1 {
+  background-color: lightgrey;
+} */
+
+btnstyle {
+  background-color: lightblue;
+}

@@ -1,0 +1,21 @@
+.homeContainer {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+}
+
+#product {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  max-height: 350px;
+}
+
+#imgHome {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}

@@ -1,0 +1,9 @@
+.cartContainer {
+  flex: 1;
+  display: grid;
+  justify-content: center;
+  background-color: aquamarine;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+}

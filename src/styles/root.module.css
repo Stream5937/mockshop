@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  height: auto;
+  min-height: 100vh;
+  background-color: aliceblue;
+}
+
+.sidebar {
+  width: 20%;
+  height: auto;
+  border-right: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.detail {
+  flex: 1;
+  height: auto;
+  padding: 1rem;
+}
