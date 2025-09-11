@@ -8,59 +8,15 @@ export default function Root() {
   const { products, error, loading } = proObj;
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
-  //  const [cartItem, setCartItem] = useState({});
-  /*
-  const addToCart = (cartItem) => {
-    console.log("Adding to cart: ", cart, " :: item : ", cartItem);
-    //clone original cart to prev
-    let prev = [...cart];
-    setCartItem(prev.push(cartItem));
-  };
-  */ /*
-  const addToCart = (cartItem) => {
-    setCart((prev) => [...prev, cartItem]);
-  };
-  */ /*
-  const removeFromCart = (cartItem) => {
-    /*
-    //cartItem defined
-    if (Object.keys(cartItem).length !== 0) {
-      // cart has items
-      if (cart.length > 0) {
-        let reducedCart = cart.filter((item) => {
-          item !== cartItem;
-        });
-        let currentCart = [...reducedCart];
-        setCart(currentCart);
-      } else {
-        console.log("Error: removing item from cart");
-      }
-    }
-    */ /*
-  };
-  */
-  //TEMP ONLY
-  const addToCart = () => {};
-  /*
-  const removeFromCart = (e) => {
-    console.log("e.target.value: ", e.target.value);
-    let updatedCart;
-    console.log("@Remove: cart: ", cart);
-    updatedCart = cart.filter((obj) => {
-      //console.log("obj.item.id: ", obj.item.id, " :: e:", e.target.value);
-      obj.item.id !== e.target.value;
-    });
-    console.log("updatedCart: ", updatedCart);
-    setCart(updatedCart);
-  };
-*/
+
+  //const addToCart = () => {};
+
   const removeFromCart = (id) => {
-    //const id = Number(e.target.value); // convert string → number
-    console.log("id to remove: ", id);
-    console.log("cart: ", cart);
-    // const newCart = cart.filter((p) => p.item.id !== Number(e.target.value));
+    //need to ensure id has been converted to a number from a string
+    // console.log("id to remove: ", id);
+    // console.log("cart: ", cart);
     const newCart = cart.filter((p) => p.item.id !== id);
-    console.log("newCart: ", newCart);
+    // console.log("newCart: ", newCart);
     setCart(newCart);
   };
 
@@ -117,7 +73,7 @@ export default function Root() {
             context={[
               { products, error, loading },
               [cart, setCart],
-              [addToCart, removeFromCart, clearCart, sumCart],
+              [removeFromCart, clearCart, sumCart],
               [quantity, setQuantity],
             ]}
           />
@@ -126,7 +82,3 @@ export default function Root() {
     </>
   );
 }
-
-/*
- [cartItem, setCartItem],
-*/

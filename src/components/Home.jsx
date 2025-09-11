@@ -2,16 +2,6 @@ import { useOutletContext, Link, useParams } from "react-router-dom";
 import style from "../styles/home.module.css";
 
 export default function Home() {
-  /*
-  context={[
-      { products, error, loading },
-      [cart, setCart],
-      [addToCart, removeFromCart, clearCart, sumCart],
-      [quantity, setQuantity],
-      [cartItem, setCartItem],
-    ]}
-
-  */
   const context = useOutletContext();
   console.log("context: ", context);
   const { products, error, loading } = context[0];

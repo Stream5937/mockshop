@@ -3,11 +3,11 @@ import style from "../styles/input.module.css";
 
 function MyInputForm(props) {
   const [quantity, setQuantity] = useState(0);
-
-  const isFormValid = () => {
+  /* UNUSED ??
+   const isFormValid = () => {
     return quantity.length;
-  };
-
+   };
+  */
   const handleQuantityChange = (e) => {
     e.preventDefault();
     setQuantity(e.target.value);
@@ -18,8 +18,7 @@ function MyInputForm(props) {
     const formData = {
       number: quantity,
     };
-    //props obj is saveInputValue: saveInputValuEdu
-    props.saveInputValue(formData);
+    props.saveInputValue(formData); //SAVED  / USED WHERE ?? NEEDED ??
   };
 
   return (
@@ -34,7 +33,6 @@ function MyInputForm(props) {
       />
       <br />
       <br />
-      {/* <input type="submit" value="Submit"/> */}
     </form>
   );
 }

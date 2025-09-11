@@ -3,12 +3,10 @@ import style from "../styles/category.module.css";
 
 export default function CategoryProducts() {
   const context = useOutletContext();
-  //console.log("context: ", context);
   const { products, error, loading } = context[0];
   const [cart, setCart] = context[1];
-  const [addToCart, removeFromCart, clearCart, sumCart] = context[2];
+  const [removeFromCart, clearCart, sumCart] = context[2];
   const [quantity, setQuantity] = context[3];
-  //  const [cartItem, setCartItem] = context[4];
   const { categoryName } = useParams();
 
   const filtered = products.filter((p) => p.category === categoryName);
