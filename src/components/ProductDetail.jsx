@@ -16,12 +16,13 @@ export default function ProductDetail() {
   const [cart, setCart] = context[1];
   const [removeFromCart, clearCart, sumCart] = context[2];
   const [quantity, setQuantity] = context[3];
+  const [totalItems, setTotalItems] = context[4];
 
   //to clear input
   const [inputValue, setInputValue] = useState("");
 
   const product = products.find((p) => p.id === Number(productId));
-  const [totalItems, setTotalItems] = useState(0);
+  //const [totalItems, setTotalItems] = useState(0);
 
   let totalNum = 0;
   cart.map((obj) => {

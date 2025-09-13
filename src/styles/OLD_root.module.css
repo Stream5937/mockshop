@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  height: auto;
+  min-height: 100vh;
+  background-color: aliceblue;
+}
+
+.sidebar {
+  width: 20%;
+  height: auto;
+  border-right: 1px solid #ccc;
+  padding: 0;
+}
+
+.detail {
+  flex: 1;
+  height: auto;
+  background-color: lightyellow;
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 3.5fr 1.5fr;
+  grid-template-rows: 1fr 10fr;
+  justify-items: left;
+  align-items: start;
+  margin: 0;
+  padding: 0;
+}

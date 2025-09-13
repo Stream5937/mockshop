@@ -8,8 +8,7 @@ export default function Root() {
   const { products, error, loading } = proObj;
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
-
-  //const addToCart = () => {};
+  const [totalItems, setTotalItems] = useState(0);
 
   const removeFromCart = (id) => {
     //need to ensure id has been converted to a number from a string
@@ -75,6 +74,7 @@ export default function Root() {
               [cart, setCart],
               [removeFromCart, clearCart, sumCart],
               [quantity, setQuantity],
+              [totalItems, setTotalItems],
             ]}
           />
         </div>
