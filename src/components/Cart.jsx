@@ -11,62 +11,56 @@ export default function Cart() {
   const [quantity, setQuantity] = context[3];
   const [totalItems, setTotalItems] = context[4];
 
-  /*
-  const initialValue = 0;
-  totalItems = cart.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.number,
-    initialValue
-  );
-  console.log("totalItems: ", totalItems);
- */
-
-  //IS THIS NEEDED TO ENSURE RENDER ??
-  //useEffect(() => {}, [cart]);
-
   return (
     <>
       <div className={style.cartContainer}>
         {/* Mini Cart */}
-        <div style={{ marginTop: "2rem" }}>
-          <h2>🛒 Mini Cart ({totalItems})</h2>
-          {cart.length === 0 ? (
-            <p>No items yet</p>
-          ) : (
-            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-              {cart.map((obj) => (
-                <li key={obj.item.id} style={{ marginBottom: "0.5rem" }}>
-                  <img
-                    src={obj.item.image}
-                    alt={obj.item.title}
-                    style={{
-                      width: "30px",
-                      verticalAlign: "middle",
-                      objectFit: "contain",
-                    }}
-                  />
-                  <span style={{ marginLeft: "0.5rem" }}>
-                    {obj.item.title.substring(0, 20)}... (x{obj.number})
-                  </span>
-                  <button
-                    value={obj.item.id}
-                    onClick={() => removeFromCart(obj.item.id)}
-                    style={{ marginLeft: "0.5rem" }}
-                  >
-                    ✖
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+
+        <h2>🛒 Mini Cart (total items {totalItems})</h2>
+        <div id={style.viewFull}>
           {cart.length > 0 && (
             <Link
               to="/cartPage"
               style={{ display: "block", marginTop: "0.5rem" }}
             >
-              View Full Cart
+              View Full Cart Page
             </Link>
           )}
         </div>
+
+        {cart.length === 0 ? (
+          <p>No items yet</p>
+        ) : (
+          <ul
+            id={style.cart_ul}
+            style={{ listStyle: "none", paddingLeft: 0, margin: 0 }}
+          >
+            {cart.map((obj) => (
+              <li key={obj.item.id} style={{ marginBottom: "0.5rem" }}>
+                <img
+                  src={obj.item.image}
+                  alt={obj.item.title}
+                  style={{
+                    verticalAlign: "middle",
+                    objectFit: "contain",
+                  }}
+                />
+                <span id={style.text} style={{ marginLeft: "0.5rem" }}>
+                  {obj.item.title.substring(0, 20)}...
+                  <span id={style.num}>(x{obj.number})</span>
+                </span>
+                <button
+                  id={style.li_btn}
+                  value={obj.item.id}
+                  onClick={() => removeFromCart(obj.item.id)}
+                  style={{ marginLeft: "0.5rem" }}
+                >
+                  ✖
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );

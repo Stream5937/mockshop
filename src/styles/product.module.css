@@ -2,11 +2,11 @@
   flex: 1;
   background-color: floralwhite; /* lightyellow; */
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 3.8fr 1.2fr;
   grid-template-rows: 1fr;
-  gap: 1rem;
-  width: 100%;
-  min-height: 100vh;
+  /* gap: 1rem; */
+  width: 98%;
+  /*  min-height: 98vh; */
   height: auto;
   /*  border: 1px solid #ccc; */
 }
@@ -15,9 +15,9 @@
   display: grid;
   grid-area: 1/1/2/2;
   width: 100%;
-  min-height: 100vh;
+  /*  min-height: 98vh; */
   height: auto;
-  border: 1px solid #ccc;
+  /*  border: 1px solid #ccc; */
   padding: 1rem;
 }
 
@@ -25,16 +25,16 @@
   display: grid;
   grid-area: 1/2/2/3;
   width: 100%;
-  min-height: 100vh;
+  min-height: 96vh;
   height: auto;
   justify-items: center;
   align-items: start;
-  padding: 1rem;
+  /* padding: 1rem; */
   background-color: aquamarine;
 }
 
 #product {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding: 1rem;
   max-width: 700px;
   min-width: 300px;
@@ -52,7 +52,7 @@ form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding: 1rem;
   gap: 1 rem;
 }
@@ -62,12 +62,14 @@ form > a > button {
   height: 50px;
   /*  background-color: aquamarine; */
   /*margin-top: 15px; */
+  margin-left: 0.5rem;
 }
 
 input {
   margin-left: 0;
   font-size: larger;
   font-weight: 800;
+  margin-right: 0.5rem;
 }
 
 /*

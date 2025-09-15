@@ -119,8 +119,8 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
+
         <div id={style.sideCart}>
-          <h3>Cart Details</h3>
           <Outlet
             totalItems={totalItems}
             context={[
@@ -139,3 +139,7 @@ export default function ProductDetail() {
     </>
   );
 }
+
+/*
+<h3>Cart Details</h3>
+*/

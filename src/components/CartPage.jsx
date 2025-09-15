@@ -1,15 +1,87 @@
 import style from "../styles/cartPage.module.css";
-import { useOutletContext, Link, useParams } from "react-router-dom";
+import { Outlet, useOutletContext, Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Cart from "./Cart.jsx";
 import IncDecBtn from "./incDecBtn.jsx";
 
 export default function CartPage() {
   const context = useOutletContext();
+
+  // console.log("at CartPage context: ", context);
+
   const { products, error, loading } = context[0];
   const [cart, setCart] = context[1];
   const [removeFromCart, clearCart, sumCart] = context[2];
   const [quantity, setQuantity] = context[3];
   const [totalItems, setTotalItems] = context[4];
+
+  let totalNum = 0;
+  cart.map((obj) => {
+    totalNum = totalNum + Number(obj.number);
+  });
+  useEffect(() => {
+    setTotalItems(totalNum);
+  }, [totalNum]);
+
+  const increase = (obj) => {
+    console.log("id and +quntity: ", obj.item.id, ", ", obj.number);
+    if (obj) {
+      const newNumber = Number(obj.number) + 1;
+      const newCartItem = { item: obj.item, number: newNumber };
+      // check if product already in cart
+      const exists = cart.find((c) => c.item.id === newCartItem.item.id);
+      let updatedCart;
+      if (exists) {
+        updatedCart = cart.map((c) =>
+          c.item.id === newCartItem.item.id ? newCartItem : c
+        );
+      } else {
+        updatedCart = [...cart, newCartItem];
+      }
+
+      //   console.log("updatedCart: ", updatedCart);
+      setCart(updatedCart);
+      console.log("cart after update: ", updatedCart);
+    } else {
+      console.log("missing product!");
+    }
+  };
+  const decrease = (obj) => {
+    console.log("id and -quntity: ", obj.item.id, ", ", obj.number);
+    if (obj) {
+      let newNumber = Number(obj.number) - 1;
+      if (newNumber < 1) {
+        newNumber = 1;
+      }
+
+      const newCartItem = { item: obj.item, number: newNumber };
+      // check if product already in cart
+      const exists = cart.find((c) => c.item.id === newCartItem.item.id);
+      let updatedCart;
+      if (exists) {
+        updatedCart = cart.map((c) =>
+          c.item.id === newCartItem.item.id ? newCartItem : c
+        );
+      } else {
+        updatedCart = [...cart, newCartItem];
+      }
+
+      //   console.log("updatedCart: ", updatedCart);
+      setCart(updatedCart);
+      console.log("cart after update: ", updatedCart);
+    } else {
+      console.log("missing product!");
+    }
+  };
+  /*
+  const navigate = useNavigate();
+  console.log("**cart: ", cart);
+
+  useEffect(() => {
+    navigate("incDecBtn");
+  }, []);
+
+  */
 
   return (
     <>
@@ -58,8 +130,42 @@ export default function CartPage() {
                         ⭐ {obj.item.rating.rate} ({obj.item.rating.count}{" "}
                         reviews)
                       </p>
+                      {/*
                       <div id={style.incdecbtn}>
-                        <IncDecBtn />
+                        <Outlet
+                          context={[
+                            obj,
+                            [cart, setCart],
+                            [removeFromCart, clearCart, sumCart],
+                            [quantity, setQuantity],
+                            [totalItems, setTotalItems],
+                          ]}
+                        />
+                      </div>
+                      */}
+                      <div id={style.incbtn}>
+                        <button
+                          value={obj}
+                          onClick={() => increase(obj)}
+                          style={{
+                            marginTop: "0.5rem",
+                            width: "200px",
+                          }}
+                        >
+                          <span id={style.inc}>Increase number</span> +
+                        </button>
+                      </div>
+                      <div id={style.decbtn}>
+                        <button
+                          value={obj}
+                          onClick={() => decrease(obj)}
+                          style={{
+                            marginTop: "0.5rem",
+                            width: "200px",
+                          }}
+                        >
+                          <span id={style.dec}>Decrease Number</span> -
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -74,65 +180,4 @@ export default function CartPage() {
       </div>
     </>
   );
-} /*}
-
-/*
-return (
-    <>
-      <div className={style.cartContainer}>
-        <div id={style.products}>
-          <h2 id={style.header}>MOCK SHOP CART DETAILS</h2>
-          <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-            {cart.map((obj) => (
-              <li key={obj.item.id} style={{ marginBottom: "0.5rem" }}>
-                <div id={style.product}>
-                  <h2>{obj.item.title}</h2>
-                  <img
-                    id={style.imgDetail}
-                    src={obj.item.image}
-                    alt={obj.item.title}
-                  />
-                </div>
-                <div id={style.info}>
-                  <p>
-                    <b>Price: ${obj.item.price}</b>
-                  </p>
-                  <p>{obj.item.description}</p>
-                  <p>Category: {obj.item.category}</p>
-                  <p>
-                    ⭐ {obj.item.rating.rate} ({obj.item.rating.count} reviews)
-                  </p>
-                </div>
-
-                {/*
-                <img
-                  src={obj.item.image}
-                  alt={obj.item.title}
-                  style={{
-                    width: "80px",
-                    verticalAlign: "middle",
-                    objectFit: "contain",
-                  }}
-                />
-                <span style={{ marginLeft: "0.5rem" }}>
-                  {obj.item.title.substring(0, 20)}... (x{obj.number})
-                </span>
-                */ /*
-                <button
-                  value={obj.item.id}
-                  onClick={() => removeFromCart(obj.item.id)}
-                  style={{ marginLeft: "0.5rem" }}
-                >
-                  ✖
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div id={style.cart}>
-          <Cart />
-        </div>
-      </div>
-    </>
-  );
-*/
+}
