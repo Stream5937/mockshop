@@ -12,10 +12,7 @@ export default function Root() {
 
   const removeFromCart = (id) => {
     //need to ensure id has been converted to a number from a string
-    // console.log("id to remove: ", id);
-    // console.log("cart: ", cart);
     const newCart = cart.filter((p) => p.item.id !== id);
-    // console.log("newCart: ", newCart);
     setCart(newCart);
   };
 

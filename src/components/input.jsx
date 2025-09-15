@@ -3,11 +3,7 @@ import style from "../styles/input.module.css";
 
 function MyInputForm(props) {
   const [quantity, setQuantity] = useState(0);
-  /* UNUSED ??
-   const isFormValid = () => {
-    return quantity.length;
-   };
-  */
+
   const handleQuantityChange = (e) => {
     e.preventDefault();
     setQuantity(e.target.value);

@@ -1,4 +1,3 @@
-import { useState, useEffect, useContext } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import style from "../styles/cart.module.css";
 

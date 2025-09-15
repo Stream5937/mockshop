@@ -5,7 +5,6 @@ import ProductDetail from "./components/ProductDetail.jsx";
 import Cart from "./components/Cart.jsx";
 import CartPage from "./components/CartPage.jsx";
 import ErrorPage from "./components/ErrorPage";
-import IncDecBtn from "./components/incDecBtn.jsx";
 
 const routes = [
   {
@@ -40,12 +39,6 @@ const routes = [
             path: "cart",
             element: <Cart />,
           },
-          /*      
-          {
-            path: "incDecBtn",
-            element: <IncDecBtn />,
-          },
-   */
         ],
       },
     ],

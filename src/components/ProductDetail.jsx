@@ -20,9 +20,7 @@ export default function ProductDetail() {
 
   //to clear input
   const [inputValue, setInputValue] = useState("");
-
   const product = products.find((p) => p.id === Number(productId));
-  //const [totalItems, setTotalItems] = useState(0);
 
   let totalNum = 0;
   cart.map((obj) => {
@@ -39,10 +37,10 @@ export default function ProductDetail() {
 
   const handleQuantityChange = (e) => {
     e.preventDefault();
-    console.log("updating quantity");
+    // console.log("updating quantity");
     setInputValue(e.target.value);
     setQuantity(e.target.value);
-    console.log("quantity: ", quantity);
+    // console.log("quantity: ", quantity);
   };
 
   const onSubmitForm = (e) => {
@@ -68,14 +66,11 @@ export default function ProductDetail() {
       }
 
       setCart(updatedCart);
-      console.log("cart after update: ", updatedCart);
+      //console.log("cart after update: ", updatedCart);
     } else {
       console.log("missing product or quantity!");
     }
   };
-
-  //is this required to ensure re-render??
-  //useEffect(() => {}, [cart]);
 
   if (!product) return <p>Product not found.</p>;
 
@@ -139,7 +134,3 @@ export default function ProductDetail() {
     </>
   );
 }
-
-/*
-<h3>Cart Details</h3>
-*/

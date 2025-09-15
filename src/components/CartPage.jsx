@@ -1,14 +1,10 @@
 import style from "../styles/cartPage.module.css";
-import { Outlet, useOutletContext, Link, useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import Cart from "./Cart.jsx";
-import IncDecBtn from "./incDecBtn.jsx";
 
 export default function CartPage() {
   const context = useOutletContext();
-
-  // console.log("at CartPage context: ", context);
-
   const { products, error, loading } = context[0];
   const [cart, setCart] = context[1];
   const [removeFromCart, clearCart, sumCart] = context[2];
@@ -39,15 +35,14 @@ export default function CartPage() {
         updatedCart = [...cart, newCartItem];
       }
 
-      //   console.log("updatedCart: ", updatedCart);
       setCart(updatedCart);
-      console.log("cart after update: ", updatedCart);
+      // console.log("cart after update: ", updatedCart);
     } else {
       console.log("missing product!");
     }
   };
   const decrease = (obj) => {
-    console.log("id and -quntity: ", obj.item.id, ", ", obj.number);
+    //console.log("id and -quntity: ", obj.item.id, ", ", obj.number);
     if (obj) {
       let newNumber = Number(obj.number) - 1;
       if (newNumber < 1) {
@@ -66,22 +61,12 @@ export default function CartPage() {
         updatedCart = [...cart, newCartItem];
       }
 
-      //   console.log("updatedCart: ", updatedCart);
       setCart(updatedCart);
-      console.log("cart after update: ", updatedCart);
+      // console.log("cart after update: ", updatedCart);
     } else {
       console.log("missing product!");
     }
   };
-  /*
-  const navigate = useNavigate();
-  console.log("**cart: ", cart);
-
-  useEffect(() => {
-    navigate("incDecBtn");
-  }, []);
-
-  */
 
   return (
     <>
@@ -130,19 +115,6 @@ export default function CartPage() {
                         ⭐ {obj.item.rating.rate} ({obj.item.rating.count}{" "}
                         reviews)
                       </p>
-                      {/*
-                      <div id={style.incdecbtn}>
-                        <Outlet
-                          context={[
-                            obj,
-                            [cart, setCart],
-                            [removeFromCart, clearCart, sumCart],
-                            [quantity, setQuantity],
-                            [totalItems, setTotalItems],
-                          ]}
-                        />
-                      </div>
-                      */}
                       <div id={style.incbtn}>
                         <button
                           value={obj}
