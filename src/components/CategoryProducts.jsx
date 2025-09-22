@@ -7,6 +7,7 @@ export default function CategoryProducts() {
   const [cart, setCart] = context[1];
   const [removeFromCart, clearCart, sumCart] = context[2];
   const [quantity, setQuantity] = context[3];
+
   const { categoryName } = useParams();
 
   const filtered = products.filter((p) => p.category === categoryName);

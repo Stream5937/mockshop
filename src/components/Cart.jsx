@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import style from "../styles/cart.module.css";
 
@@ -9,6 +10,19 @@ export default function Cart() {
   const [removeFromCart, clearCart, sumCart] = context[2];
   const [quantity, setQuantity] = context[3];
   const [totalItems, setTotalItems] = context[4];
+  const [totalCost, setTotalCost] = context[5];
+
+  let totalNum = 0;
+  let totalPrice = 0;
+
+  cart.map((obj) => {
+    totalNum = totalNum + Number(obj.number);
+    totalPrice = totalPrice + Number(obj.item.price * obj.number);
+  });
+  useEffect(() => {
+    setTotalItems(totalNum);
+    setTotalCost(totalPrice);
+  }, [totalNum, setTotalItems, totalPrice, setTotalCost]);
 
   return (
     <>
@@ -60,6 +74,9 @@ export default function Cart() {
             ))}
           </ul>
         )}
+        <div id={style.cartTotal}>
+          <p>Current Total to Pay: ${totalCost} </p>
+        </div>
       </div>
     </>
   );

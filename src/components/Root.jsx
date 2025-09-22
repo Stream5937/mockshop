@@ -9,6 +9,8 @@ export default function Root() {
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
+  const navigate = useNavigate();
 
   const removeFromCart = (id) => {
     //need to ensure id has been converted to a number from a string
@@ -24,14 +26,18 @@ export default function Root() {
   };
 
   const sumCart = () => {
-    console.log("CartContents to sum: ", cart);
+    //now redundauseEffect(() => {
+    // console.log("CartContents to sum: ", cart);
   };
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   useEffect(() => {
     navigate("/home");
   }, []);
+
+  //navigate to home page
+  // clearSelection();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -60,8 +66,24 @@ export default function Root() {
             ))}
           </ul>
           <hr />
+          <button
+            id={style.clearSelBtn}
+            value={true}
+            style={{ width: "8rem", margin: "0.5rem", backgroundColor: "pink" }}
+          >
+            <Link to="/home">Clear Selection</Link>
+          </button>
           {/* link back to root */}
-          <Link to="/home">Clear Selection</Link>
+
+          <br />
+          <button
+            id={style.clearCartBtn}
+            value={true}
+            onClick={() => clearCart()}
+            style={{ width: "8rem", margin: "0.5rem", backgroundColor: "red" }}
+          >
+            Clear Cart
+          </button>
         </div>
         {/* Detail panel */}
         <div className={style.detail}>
@@ -72,6 +94,7 @@ export default function Root() {
               [removeFromCart, clearCart, sumCart],
               [quantity, setQuantity],
               [totalItems, setTotalItems],
+              [totalCost, setTotalCost],
             ]}
           />
         </div>

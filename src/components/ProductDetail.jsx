@@ -17,18 +17,11 @@ export default function ProductDetail() {
   const [removeFromCart, clearCart, sumCart] = context[2];
   const [quantity, setQuantity] = context[3];
   const [totalItems, setTotalItems] = context[4];
+  const [totalCost, setTotalCost] = context[5];
 
   //to clear input
   const [inputValue, setInputValue] = useState("");
   const product = products.find((p) => p.id === Number(productId));
-
-  let totalNum = 0;
-  cart.map((obj) => {
-    totalNum = totalNum + Number(obj.number);
-  });
-  useEffect(() => {
-    setTotalItems(totalNum);
-  }, [totalNum]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -124,6 +117,7 @@ export default function ProductDetail() {
               [removeFromCart, clearCart, sumCart],
               [quantity, setQuantity],
               [totalItems, setTotalItems],
+              [totalCost, setTotalCost],
               {
                 /*NB ADDED FROM THIS COMPONENET*/
               },

@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CategoryProducts component > renders with products in the category 1`] = `
+<DocumentFragment>
+  <div>
+    <h2>
+      Test Category
+    </h2>
+    <div
+      class="_gridContainer_41d463"
+    >
+      <div
+        id="_product_41d463"
+      >
+        <img
+          alt="Test Product"
+          id="_imgCategory_41d463"
+          src="test.jpg"
+        />
+        <h3>
+          Test Product
+        </h3>
+        <p>
+          <b>
+            $10
+          </b>
+        </p>
+        <p>
+          This is a test product description...
+        </p>
+        <p>
+          ⭐ 4.5 (20 reviews)
+        </p>
+        <a
+          data-discover="true"
+          href="/product/1"
+        >
+          View Product
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

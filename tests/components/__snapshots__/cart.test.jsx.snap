@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Cart component > renders 1`] = `
+<DocumentFragment>
+  <div
+    class="_cartContainer_6ddd39"
+  >
+    <h2>
+      🛒 Mini Cart (total items 3)
+    </h2>
+    <div
+      id="_viewFull_6ddd39"
+    >
+      <a
+        data-discover="true"
+        href="/cartPage"
+        style="display: block; margin-top: 0.5rem;"
+      >
+        View Full Cart Page
+      </a>
+    </div>
+    <ul
+      id="_cart_ul_6ddd39"
+      style="list-style: none; padding-left: 0px; margin: 0px;"
+    >
+      <li
+        style="margin-bottom: 0.5rem;"
+      >
+        <img
+          alt="Test Product"
+          src="test.jpg"
+          style="vertical-align: middle; object-fit: contain;"
+        />
+        <span
+          id="_text_6ddd39"
+          style="margin-left: 0.5rem;"
+        >
+          Test Product...
+          <span
+            id="_num_6ddd39"
+          >
+            (x1)
+          </span>
+        </span>
+        <button
+          id="_li_btn_6ddd39"
+          style="margin-left: 0.5rem;"
+          value="1"
+        >
+          ✖
+        </button>
+      </li>
+    </ul>
+    <div
+      id="_cartTotal_6ddd39"
+    >
+      <p>
+        Current Total to Pay: $30 
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
