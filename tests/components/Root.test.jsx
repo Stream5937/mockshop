@@ -1,97 +1,137 @@
+// tests/components/Root.test.jsx
+import { describe, it, vi, expect, beforeEach } from "vitest";
 import { screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
-import * as reactRouterDom from "react-router-dom";
-import { renderWithRouter } from "../utils/renderWithRouter.jsx";
+import { renderWithRouter } from "../utils/renderWithRouter";
 import Root from "../../src/components/Root";
+import Home from "../../src/components/Home";
 
-// ----- Mocking react-router-dom hooks -----
-const useLoaderData = vi.spyOn(reactRouterDom, "useLoaderData");
-const useNavigation = vi.spyOn(reactRouterDom, "useNavigation");
+// Mock useProducts hook
+vi.mock("../../src/hooks/useProducts.jsx", () => {
+  return {
+    default: vi.fn(),
+  };
+});
+
+import useProducts from "../../src/hooks/useProducts.jsx";
 
 describe("Root component", () => {
-  const mockClearCart = vi.fn();
-
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  test("renders correct text in h2 element", () => {
-    useLoaderData.mockReturnValue({
-      products: [{ category: "Test Category" }],
+  it("shows loading state", () => {
+    useProducts.mockReturnValue({
+      products: null,
+      error: null,
+      loading: true,
     });
-    useNavigation.mockReturnValue({ state: "idle" });
 
-    renderWithRouter(<Root clearCart={mockClearCart} />);
+    renderWithRouter(<Root />);
 
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Categories"
-    );
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
   });
 
-  test("renders Home Page and Your Cart links", () => {
-    useLoaderData.mockReturnValue({ products: [] });
-    useNavigation.mockReturnValue({ state: "idle" });
+  it("shows error state", () => {
+    useProducts.mockReturnValue({
+      products: null,
+      error: new Error("Failed to fetch"),
+      loading: false,
+    });
 
-    renderWithRouter(<Root clearCart={mockClearCart} />);
+    renderWithRouter(<Root />);
 
+    expect(screen.getByText(/error/i)).toBeInTheDocument();
+    expect(screen.getByText(/failed to fetch/i)).toBeInTheDocument();
+  });
+
+  it("renders categories when products are loaded", async () => {
+    useProducts.mockReturnValue({
+      products: [
+        { id: 1, title: "Shirt", category: "Clothing", image: "img.png" },
+        { id: 2, title: "Pants", category: "Clothing", image: "img.png" },
+        { id: 3, title: "Laptop", category: "Electronics", image: "img.png" },
+      ],
+      error: null,
+      loading: false,
+    });
+
+    renderWithRouter(<Root />);
+
+    // Root renders categories sidebar
+    expect(
+      screen.getByRole("heading", { name: /categories/i })
+    ).toBeInTheDocument();
+
+    // Category links should be visible
+    expect(screen.getByRole("link", { name: /clothing/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /electronics/i })
+    ).toBeInTheDocument();
+  });
+
+  it("renders Home Page and Your Cart links", () => {
+    renderWithRouter(<Root />);
+    //screen.debug();
     expect(screen.getByText("Home Page")).toBeInTheDocument();
     expect(screen.getByText("Your Cart")).toBeInTheDocument();
   });
 
-  test("renders category links from products", () => {
-    useLoaderData.mockReturnValue({
-      products: [{ category: "Test Category" }],
-    });
-    useNavigation.mockReturnValue({ state: "idle" });
-
-    renderWithRouter(<Root clearCart={mockClearCart} />);
-
-    expect(screen.getByText("Test Category")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Test Category" })).toHaveAttribute(
-      "href",
-      "/category/Test Category"
-    );
-  });
-
-  test("renders Clear Selection and Clear Cart buttons", () => {
-    useLoaderData.mockReturnValue({ products: [] });
-    useNavigation.mockReturnValue({ state: "idle" });
-
-    renderWithRouter(<Root clearCart={mockClearCart} />);
-
+  it("renders Clear Selection and Clear Cart buttons", () => {
+    renderWithRouter(<Root />);
+    // screen.debug();
     expect(screen.getByText("Clear Selection")).toBeInTheDocument();
     expect(screen.getByText("Clear Cart")).toBeInTheDocument();
   });
 
-  test("calls clearCart when Clear Cart button is clicked", () => {
-    useLoaderData.mockReturnValue({ products: [] });
-    useNavigation.mockReturnValue({ state: "idle" });
-
+  it("calls clearCart when Clear Cart button is clicked", () => {
+    renderWithRouter(<Root />);
+    //screen.debug();
     window.prompt = vi.fn().mockReturnValue(true);
-
-    renderWithRouter(<Root clearCart={mockClearCart} />);
-
-    fireEvent.click(screen.getByText("Clear Cart"));
-    expect(mockClearCart).toHaveBeenCalled();
+    const clearCartBtn = screen.getByText("Clear Cart");
+    fireEvent.click(clearCartBtn);
+    expect(window.prompt).toHaveBeenCalledWith("Confirm Delete Cart Contents", [
+      false,
+    ]);
   });
 
-  test("shows loading message when navigation is loading", () => {
-    useLoaderData.mockReturnValue({ products: [] });
-    useNavigation.mockReturnValue({ state: "loading" });
-
-    renderWithRouter(<Root clearCart={mockClearCart} />);
-
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
-  });
-
-  test("shows error message when loader throws", () => {
-    useLoaderData.mockImplementation(() => {
-      throw new Error("Failed to fetch");
+  it("passes products to Home via Outlet context", () => {
+    useProducts.mockReturnValue({
+      products: [
+        {
+          id: 1,
+          title: "Shirt",
+          category: "Clothing",
+          image: "shirt.png",
+          description: "Nice shirt",
+        },
+        {
+          id: 2,
+          title: "Laptop",
+          category: "Electronics",
+          image: "laptop.png",
+          description: "Fast laptop",
+        },
+      ],
+      error: null,
+      loading: false,
     });
-    useNavigation.mockReturnValue({ state: "idle" });
 
-    renderWithRouter(<Root clearCart={mockClearCart} />);
+    renderWithRouter(null, {
+      route: "/home",
+      routes: [
+        {
+          path: "/",
+          element: <Root />,
+          children: [{ path: "home", element: <Home /> }],
+        },
+      ],
+    });
 
-    expect(screen.getByText("Error: Failed to fetch")).toBeInTheDocument();
+    expect(
+      screen.getByText(/mock shop this weeks promotions/i)
+    ).toBeInTheDocument();
+    //expect(screen.getByText(/Shirt/i)).toBeInTheDocument();  //does not distinguish between 'Shirt' and 'shirt'
+    expect(screen.getByRole("heading", { name: "Shirt" })).toBeInTheDocument();
+    expect(screen.getByText(/fast laptop/i)).toBeInTheDocument();
   });
 });

@@ -5,11 +5,11 @@ import style from "../styles/root.module.css";
 
 export default function Root() {
   const proObj = useProducts();
-  const { products, error, loading } = proObj;
-  const [cart, setCart] = useState([]);
-  const [quantity, setQuantity] = useState(0);
-  const [totalItems, setTotalItems] = useState(0);
-  const [totalCost, setTotalCost] = useState(0);
+  const { products, error, loading } = proObj; //context[0]
+  const [cart, setCart] = useState([]); //context[1]
+  const [quantity, setQuantity] = useState(0); //context[2]
+  const [totalItems, setTotalItems] = useState(0); //context[3]
+  const [totalCost, setTotalCost] = useState(0); //context[4]
   const navigate = useNavigate();
 
   const removeFromCart = (id) => {

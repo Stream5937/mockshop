@@ -20,10 +20,12 @@ export default function CartPage() {
   }, [totalNum]);
 
   const increase = (obj) => {
-    console.log("id and +quntity: ", obj.item.id, ", ", obj.number);
+    console.log("id and +quantity: ", obj.item.id, ", ", obj.number);
     if (obj) {
       const newNumber = Number(obj.number) + 1;
+      console.log("newNumber: ", newNumber);
       const newCartItem = { item: obj.item, number: newNumber };
+      console.log("newCartItem: ", newCartItem);
       // check if product already in cart
       const exists = cart.find((c) => c.item.id === newCartItem.item.id);
       let updatedCart;
@@ -87,6 +89,7 @@ export default function CartPage() {
                     />
                     <div id={style.removebtn}>
                       <button
+                        name="remove"
                         value={obj.item.id}
                         onClick={() => removeFromCart(obj.item.id)}
                         style={{
@@ -117,6 +120,7 @@ export default function CartPage() {
                       </p>
                       <div id={style.incbtn}>
                         <button
+                          name="increase"
                           value={obj}
                           onClick={() => increase(obj)}
                           style={{
@@ -129,6 +133,7 @@ export default function CartPage() {
                       </div>
                       <div id={style.decbtn}>
                         <button
+                          name="decrease"
                           value={obj}
                           onClick={() => decrease(obj)}
                           style={{

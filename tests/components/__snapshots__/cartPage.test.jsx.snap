@@ -1,0 +1,184 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Cart Page component > renders 1`] = `
+<DocumentFragment>
+  <div
+    id="_cartContainer_df010c"
+  >
+    <div
+      id="_products_df010c"
+    >
+      <h2
+        id="_header_df010c"
+      >
+        MOCK SHOP CART DETAILS
+      </h2>
+      <ul
+        style="list-style: none; padding-left: 0px;"
+      >
+        <li
+          style="margin-bottom: 0.5rem;"
+        >
+          <div
+            id="_itemContainer_df010c"
+          >
+            <div
+              id="_product_df010c"
+            >
+              <h3>
+                Test Product
+              </h3>
+              <img
+                alt="Test Product"
+                id="_imgDetail_df010c"
+                src="test.jpg"
+              />
+              <div
+                id="_removebtn_df010c"
+              >
+                <button
+                  name="remove"
+                  style="margin-top: 0.5rem; width: 200px;"
+                  value="1"
+                >
+                  <span
+                    id="_remove_df010c"
+                  >
+                    Remove item
+                  </span>
+                   ✖
+                </button>
+              </div>
+            </div>
+            <div
+              id="_info_df010c"
+            >
+              <p
+                id="_pricecat_df010c"
+              >
+                <span
+                  id="_price_df010c"
+                >
+                  <b>
+                    Price: $10
+                  </b>
+                </span>
+                <span
+                  id="_category_df010c"
+                >
+                  Category: Test Category
+                </span>
+              </p>
+              <p
+                id="_desc_df010c"
+              >
+                This is a test product description
+              </p>
+              <div
+                id="_ratecount_df010c"
+              >
+                <p>
+                  ⭐ 4.5 (20 reviews)
+                </p>
+                <div
+                  id="_incbtn_df010c"
+                >
+                  <button
+                    name="increase"
+                    style="margin-top: 0.5rem; width: 200px;"
+                    value="[object Object]"
+                  >
+                    <span
+                      id="_inc_df010c"
+                    >
+                      Increase number
+                    </span>
+                     +
+                  </button>
+                </div>
+                <div
+                  id="_decbtn_df010c"
+                >
+                  <button
+                    name="decrease"
+                    style="margin-top: 0.5rem; width: 200px;"
+                    value="[object Object]"
+                  >
+                    <span
+                      id="_dec_df010c"
+                    >
+                      Decrease Number
+                    </span>
+                     -
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      id="_cart_df010c"
+    >
+      <div
+        class="_cartContainer_6ddd39"
+      >
+        <h2>
+          🛒 Mini Cart (total items 3)
+        </h2>
+        <div
+          id="_viewFull_6ddd39"
+        >
+          <a
+            data-discover="true"
+            href="/cartPage"
+            style="display: block; margin-top: 0.5rem;"
+          >
+            View Full Cart Page
+          </a>
+        </div>
+        <ul
+          id="_cart_ul_6ddd39"
+          style="list-style: none; padding-left: 0px; margin: 0px;"
+        >
+          <li
+            style="margin-bottom: 0.5rem;"
+          >
+            <img
+              alt="Test Product"
+              src="test.jpg"
+              style="vertical-align: middle; object-fit: contain;"
+            />
+            <span
+              id="_text_6ddd39"
+              style="margin-left: 0.5rem;"
+            >
+              Test Product...
+              <span
+                id="_num_6ddd39"
+              >
+                (x3)
+              </span>
+            </span>
+            <button
+              id="_li_btn_6ddd39"
+              style="margin-left: 0.5rem;"
+              value="1"
+            >
+              ✖
+            </button>
+          </li>
+        </ul>
+        <div
+          id="_cartTotal_6ddd39"
+        >
+          <p>
+            Current Total to Pay: $30 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
